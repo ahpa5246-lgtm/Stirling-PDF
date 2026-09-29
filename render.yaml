@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: pdf-tools
+    runtime: docker
+    dockerfilePath: ./Dockerfile.fat
+    dockerContext: .
+    healthCheckPath: /
+    envVars:
+      - key: SERVER_PORT
+        value: "10000"
+      - key: SERVER_ADDRESS
+        value: "0.0.0.0"
+      - key: DOCKER_ENABLE_SECURITY
+        value: "false"
+      - key: STIRLING_PDF_DESKTOP_UI
+        value: "false"
+      - key: TESSERACT_LANGS
+        value: "ara,eng"
