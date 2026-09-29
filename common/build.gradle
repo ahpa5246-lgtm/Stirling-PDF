@@ -34,7 +34,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20240325.1'
     implementation 'com.fathzer:javaluator:3.0.6'
-    implementation 'com.posthog.java:posthog:1.2.0'
     implementation 'io.github.pixee:java-security-toolkit:1.2.1'
     implementation 'org.apache.commons:commons-lang3:3.17.0'
     implementation 'com.drewnoakes:metadata-extractor:2.19.0' // Image metadata extractor
