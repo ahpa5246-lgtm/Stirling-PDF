@@ -1,0 +1,39 @@
+# Lightweight Render preview image for the MIT commercial fork.
+# Purpose: run the web UI and core Java application within Render's free 512 MB instance.
+# Heavy external processors (LibreOffice, OCR, Python/OpenCV) are intentionally omitted.
+
+FROM gradle:8.14-jdk21 AS build
+
+WORKDIR /workspace
+COPY . .
+
+ENV DOCKER_ENABLE_SECURITY=false
+ENV STIRLING_PDF_DESKTOP_UI=false
+
+RUN ./gradlew clean bootJar \
+    -x test \
+    -x spotlessApply \
+    -x spotlessCheck \
+    -x sonarqube \
+    --no-daemon && \
+    JAR_FILE="$(find build/libs -maxdepth 1 -type f -name '*.jar' | head -n 1)" && \
+    test -n "$JAR_FILE" && \
+    cp "$JAR_FILE" /tmp/app.jar
+
+FROM eclipse-temurin:21-jre-jammy
+
+WORKDIR /app
+COPY --from=build /tmp/app.jar /app/app.jar
+
+RUN mkdir -p /configs /logs /customFiles /pipeline/watchedFolders /pipeline/finishedFolders
+
+ENV DOCKER_ENABLE_SECURITY=false \
+    STIRLING_PDF_DESKTOP_UI=false \
+    SERVER_ADDRESS=0.0.0.0 \
+    SERVER_PORT=10000 \
+    SYSTEM_ENABLEANALYTICS=false \
+    JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=65 -XX:+UseG1GC -Dfile.encoding=UTF-8"
+
+EXPOSE 10000
+
+CMD ["java", "-jar", "/app/app.jar"]
