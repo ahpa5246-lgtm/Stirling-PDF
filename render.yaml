@@ -1,8 +1,9 @@
 services:
   - type: web
-    name: pdf-tools
+    name: pdf-tools-preview
     runtime: docker
-    dockerfilePath: ./Dockerfile.fat
+    plan: free
+    dockerfilePath: ./Dockerfile.render-preview
     dockerContext: .
     healthCheckPath: /
     envVars:
@@ -14,5 +15,7 @@ services:
         value: "false"
       - key: STIRLING_PDF_DESKTOP_UI
         value: "false"
-      - key: TESSERACT_LANGS
-        value: "ara,eng"
+      - key: SYSTEM_ENABLEANALYTICS
+        value: "false"
+      - key: SYSTEM_SHOWUPDATE
+        value: "false"
