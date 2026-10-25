@@ -67,3 +67,32 @@ For adding translations, see the [Translation Guide](devGuide/HowToAddNewLanguag
 ## License
 
 Stirling PDF is open-core. See [LICENSE](LICENSE) for details.
+
+
+## Download, setup and project overview
+
+A fork of the upstream Stirling PDF document toolkit.
+
+Retains upstream functionality, documentation, licensing and contribution instructions.
+
+![Project workflow illustration](docs/project-overview.svg)
+
+[Download source ZIP](https://github.com/ahpa5246-lgtm/Stirling-PDF/archive/refs/heads/main.zip) · [Changes and branches](https://github.com/ahpa5246-lgtm/Stirling-PDF/branches) · [Verification notes](docs/QUALITY_REVIEW.md)
+
+The ZIP contains source code. Installation steps and external runtime requirements are listed below.
+
+```bash
+git clone https://github.com/ahpa5246-lgtm/Stirling-PDF.git
+cd Stirling-PDF
+```
+
+From the repository directory:
+
+```text
+# Follow the upstream prerequisites and task runner.
+task install
+task check
+task dev
+```
+
+The diagram is a project illustration. Test results and runtime limitations are recorded in [the review](docs/QUALITY_REVIEW.md); it is not a production-readiness certification.
