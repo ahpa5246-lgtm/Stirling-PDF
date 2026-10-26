@@ -97,6 +97,7 @@ export const URL_TO_TOOL_MAP: Record<string, ToolId> = {
   "/delete-attachment": "deleteAttachment",
   "/scanner-effect": "scannerEffect",
   "/create-portfolio": "createPortfolio",
+  "/flatten-portfolio": "flattenPortfolio",
 
   // Advanced tools
   "/overlay-pdfs": "overlayPdfs",
