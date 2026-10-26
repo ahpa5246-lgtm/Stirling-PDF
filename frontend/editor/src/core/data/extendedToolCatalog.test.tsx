@@ -24,7 +24,7 @@ describe("registered tools", () => {
     "exposes $operationType with its backend endpoint",
     (config) => {
       const { result } = renderHook(() => useTranslatedToolCatalog());
-      const tool = result.current.regularTools[config.operationType];
+      const tool = result.current.allTools[config.operationType];
       expect(tool.component).toBeTruthy();
       expect(tool.operationConfig?.endpoint).toBe(config.endpoint);
       expect(tool.supportedFormats).toEqual(["pdf"]);
