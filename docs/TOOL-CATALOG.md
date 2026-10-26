@@ -1,6 +1,6 @@
 # Core PDF tools
 
-The core registry contains 59 regular tool IDs, in addition to Read, Multi-Tool and Automate. The classification step is pipeline-only. The listing describes code registration, not proof of a working deployment.
+The core registry contains 60 regular tool IDs, in addition to Read, Multi-Tool and Automate. The classification step is pipeline-only. The listing describes code registration, not proof of a working deployment.
 
 ## Registered regular tools
 
@@ -52,6 +52,7 @@ The core registry contains 59 regular tool IDs, in addition to Read, Multi-Tool 
 - `deleteAttachment`
 - `scannerEffect`
 - `createPortfolio`
+- `flattenPortfolio`
 - `changeMetadata`
 - `overlayPdfs`
 - `getPdfInfo`
@@ -71,6 +72,7 @@ The conversion tool supports shortcuts for Word, Excel, PowerPoint, images, HTML
 ## Newly exposed backend operations
 
 - Extract, rename or delete PDF attachments.
+- Flatten a PDF portfolio while preserving its embedded attachments.
 - Apply a scanner effect to an existing PDF. This rasterizes pages and may remove searchable text and interactive content.
 
 ## Production gaps
