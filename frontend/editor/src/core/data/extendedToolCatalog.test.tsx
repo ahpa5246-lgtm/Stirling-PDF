@@ -1,3 +1,4 @@
+import { flattenPortfolioOperationConfig } from "@app/hooks/tools/attachments/useFlattenPortfolio";
 import { renderHook } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { useTranslatedToolCatalog } from "@app/data/useTranslatedToolRegistry";
@@ -15,6 +16,7 @@ vi.mock("react-i18next", () => ({
 
 describe("registered tools", () => {
   const configs = [
+    flattenPortfolioOperationConfig,
     extractAttachmentsOperationConfig,
     deleteAttachmentOperationConfig,
     renameAttachmentOperationConfig,
