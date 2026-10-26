@@ -1,3 +1,4 @@
+import { flattenPortfolioOperationConfig } from "@app/hooks/tools/attachments/useFlattenPortfolio";
 import { extractAttachmentsOperationConfig } from "@app/hooks/tools/attachments/useExtractAttachments";
 import { renameAttachmentOperationConfig } from "@app/hooks/tools/attachments/useRenameAttachment";
 import { deleteAttachmentOperationConfig } from "@app/hooks/tools/attachments/useDeleteAttachment";
@@ -1030,6 +1031,24 @@ export function useTranslatedToolCatalog(): TranslatedToolCatalog {
         synonyms: getSynonyms(t, "replaceColor"),
       },
 
+      flattenPortfolio: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t("home.flattenPortfolio.title", "Flatten PDF Portfolio"),
+        component: lazy(() => import("@app/tools/FlattenPortfolio")),
+        description: t(
+          "home.flattenPortfolio.desc",
+          "Convert a PDF portfolio into a standard PDF while retaining its attachments.",
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: ["flatten-portfolio"],
+        operationConfig: asRegistryConfig(flattenPortfolioOperationConfig),
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: getSynonyms(t, "flattenPortfolio"),
+      },
       extractAttachments: {
         icon: <Icon name="download" size="1.5rem" />,
         name: t("home.extractAttachments.title", "Extract Attachments"),
