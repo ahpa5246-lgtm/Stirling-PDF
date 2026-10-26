@@ -1,3 +1,7 @@
+import { extractAttachmentsOperationConfig } from "@app/hooks/tools/attachments/useExtractAttachments";
+import { renameAttachmentOperationConfig } from "@app/hooks/tools/attachments/useRenameAttachment";
+import { deleteAttachmentOperationConfig } from "@app/hooks/tools/attachments/useDeleteAttachment";
+import { scannerEffectOperationConfig } from "@app/hooks/tools/scannerEffect/useScannerEffect";
 import { lazy, useMemo } from "react";
 import { Icon } from "@app/ui/Icon";
 import { useTranslation } from "react-i18next";
@@ -1024,6 +1028,79 @@ export function useTranslatedToolCatalog(): TranslatedToolCatalog {
             import("@app/components/tools/replaceColor/ReplaceColorSettings"),
         ),
         synonyms: getSynonyms(t, "replaceColor"),
+      },
+
+      extractAttachments: {
+        icon: <Icon name="download" size="1.5rem" />,
+        name: t("home.extractAttachments.title", "Extract Attachments"),
+        component: lazy(() => import("@app/tools/ExtractAttachments")),
+        description: t(
+          "home.extractAttachments.desc",
+          "Download embedded files from a PDF.",
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.EXTRACTION,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: ["extract-attachments"],
+        operationConfig: asRegistryConfig(extractAttachmentsOperationConfig),
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: getSynonyms(t, "extractAttachments"),
+      },
+      renameAttachment: {
+        icon: <Icon name="square-pen" size="1.5rem" />,
+        name: t("home.renameAttachment.title", "Rename Attachment"),
+        component: lazy(() => import("@app/tools/RenameAttachment")),
+        description: t(
+          "home.renameAttachment.desc",
+          "Change the name of a file embedded in a PDF.",
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: ["rename-attachment"],
+        operationConfig: asRegistryConfig(renameAttachmentOperationConfig),
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: getSynonyms(t, "renameAttachment"),
+      },
+      deleteAttachment: {
+        icon: <Icon name="trash" size="1.5rem" />,
+        name: t("home.deleteAttachment.title", "Delete Attachment"),
+        component: lazy(() => import("@app/tools/DeleteAttachment")),
+        description: t(
+          "home.deleteAttachment.desc",
+          "Remove an embedded file from a PDF by its exact name.",
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.REMOVAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: ["delete-attachment"],
+        operationConfig: asRegistryConfig(deleteAttachmentOperationConfig),
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: getSynonyms(t, "deleteAttachment"),
+      },
+      scannerEffect: {
+        icon: <Icon name="sliders-horizontal" size="1.5rem" />,
+        name: t("home.scannerEffect.title", "Scanner Effect"),
+        component: lazy(() => import("@app/tools/ScannerEffect")),
+        description: t(
+          "home.scannerEffect.desc",
+          "Give an existing PDF the appearance of a scanned document.",
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.PAGE_FORMATTING,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: ["scanner-effect"],
+        operationConfig: asRegistryConfig(scannerEffectOperationConfig),
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: getSynonyms(t, "scannerEffect"),
       },
 
       // Developer Tools

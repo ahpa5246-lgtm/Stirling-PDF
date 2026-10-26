@@ -1,3 +1,4 @@
+import { getConversionPreset } from "@app/hooks/tools/convert/conversionPresets";
 /**
  * URL routing utilities for tool navigation with registry support
  */
@@ -96,6 +97,8 @@ export function toolRoute(
     console.warn(`Tool ${toolId} not found in registry`);
     return null;
   }
+  if (toolId === "convert" && getConversionPreset(from.pathname))
+    return routeTarget(from.pathname, from);
   return routeTarget(getToolUrlPath(toolId), from);
 }
 

@@ -1,3 +1,4 @@
+import { CONVERSION_PRESETS } from "@app/hooks/tools/convert/conversionPresets";
 import { ToolId } from "@app/types/toolId";
 
 // Map URL paths to tool keys (multiple URLs can map to same tool)
@@ -14,6 +15,10 @@ export const URL_TO_TOOL_MAP: Record<string, ToolId> = {
   "/repair": "repair",
   "/flatten": "flatten",
   "/crop": "crop",
+
+  ...Object.fromEntries(
+    Object.keys(CONVERSION_PRESETS).map((path) => [path, "convert" as const]),
+  ),
 
   // Convert tool and all its variants
   "/convert": "convert",
@@ -87,6 +92,10 @@ export const URL_TO_TOOL_MAP: Record<string, ToolId> = {
   "/change-metadata": "changeMetadata",
   "/get-pdf-info": "getPdfInfo",
   "/add-attachments": "addAttachments",
+  "/extract-attachments": "extractAttachments",
+  "/rename-attachment": "renameAttachment",
+  "/delete-attachment": "deleteAttachment",
+  "/scanner-effect": "scannerEffect",
   "/create-portfolio": "createPortfolio",
 
   // Advanced tools

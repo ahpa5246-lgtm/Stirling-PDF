@@ -1,3 +1,6 @@
+import { useConversionRoutePreset } from "@app/hooks/tools/convert/useConversionRoutePreset";
+import { useInRouterContext, useLocation } from "react-router-dom";
+import { getConversionPreset } from "@app/hooks/tools/convert/conversionPresets";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useEndpointEnabled } from "@app/hooks/useEndpointConfig";
@@ -14,7 +17,12 @@ import { useConvertParameters } from "@app/hooks/tools/convert/useConvertParamet
 import { useConvertOperation } from "@app/hooks/tools/convert/useConvertOperation";
 import { BaseToolProps, ToolComponent } from "@app/types/tool";
 
-const Convert = ({ onPreviewFile, onComplete, onError }: BaseToolProps) => {
+const ConvertContent = ({
+  onPreviewFile,
+  onComplete,
+  onError,
+  pathname,
+}: BaseToolProps & { pathname: string }) => {
   const { t } = useTranslation();
   const { files: activeFiles } = useAllFiles();
   const { setSelectedFiles } = useFileSelection();
@@ -87,11 +95,13 @@ const Convert = ({ onPreviewFile, onComplete, onError }: BaseToolProps) => {
       }
     } else {
       previousSelectionRef.current = "";
-      if (activeFiles.length === 0) {
+      if (activeFiles.length === 0 && !getConversionPreset(pathname)) {
         convertParams.resetParameters();
       }
     }
   }, [selectedFiles]);
+
+  useConversionRoutePreset(pathname, convertParams.setParameters);
 
   useEffect(() => {
     // Reset when user changes conversion parameters (but not during operation)
@@ -185,6 +195,17 @@ const Convert = ({ onPreviewFile, onComplete, onError }: BaseToolProps) => {
     },
   });
 };
+
+const RoutedConvert = (props: BaseToolProps) => {
+  const { pathname } = useLocation();
+  return <ConvertContent {...props} pathname={pathname} />;
+};
+const Convert = (props: BaseToolProps) =>
+  useInRouterContext() ? (
+    <RoutedConvert {...props} />
+  ) : (
+    <ConvertContent {...props} pathname="/convert" />
+  );
 
 // Static method to get the operation hook for automation
 Convert.tool = () => useConvertOperation;
