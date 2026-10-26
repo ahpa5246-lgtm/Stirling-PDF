@@ -1,10 +1,6 @@
 import { useCallback } from "react";
-import { useToolResources } from "@app/hooks/tools/shared/useToolResources";
 import { generateId } from "@app/utils/generateId";
-import {
-  buildArchiveName,
-  uniqueExtractedNames,
-} from "@app/hooks/tools/attachments/attachmentTools";
+import { buildArchiveName } from "@app/hooks/tools/attachments/attachmentTools";
 import { useTranslation } from "react-i18next";
 import { useBaseParameters } from "@app/hooks/tools/shared/useBaseParameters";
 import {
@@ -34,30 +30,14 @@ export const extractAttachmentsOperationConfig = defineSingleFileTool({
 });
 export const useExtractAttachmentsOperation = () => {
   const { t } = useTranslation();
-  const { extractZipFiles } = useToolResources();
-  const responseHandler = useCallback(
-    async (blob: Blob, inputs: File[]) => {
-      const archive = new File(
-        [blob],
-        buildArchiveName(inputs[0]?.name ?? "document.pdf", generateId()),
-        { type: "application/zip" },
-      );
-      const results = await extractZipFiles(archive);
-      if (results.length === 1 && results[0] === archive) return results;
-      const names = uniqueExtractedNames(
-        archive.name,
-        results.map((file) => file.name),
-      );
-      return results.map(
-        (file, index) =>
-          new File([file], names[index], {
-            type: file.type,
-            lastModified: file.lastModified,
-          }),
-      );
-    },
-    [extractZipFiles],
-  );
+  const responseHandler = useCallback(async (blob: Blob, inputs: File[]) => {
+    const archive = new File(
+      [blob],
+      buildArchiveName(inputs[0]?.name ?? "document.pdf", generateId()),
+      { type: "application/zip" },
+    );
+    return [archive];
+  }, []);
   return useToolOperation<ExtractAttachmentsParameters>({
     ...extractAttachmentsOperationConfig,
     responseHandler,

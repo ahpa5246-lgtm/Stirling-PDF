@@ -284,6 +284,26 @@ class AttachmentServiceTest {
     }
 
     @Test
+    void renameAttachment_ExistingTargetDoesNotOverwrite() throws IOException {
+        try (var document = new PDDocument()) {
+            var first =
+                    new MockMultipartFile(
+                            "file", "a.txt", MediaType.TEXT_PLAIN_VALUE, "first".getBytes());
+            var second =
+                    new MockMultipartFile(
+                            "file", "b.txt", MediaType.TEXT_PLAIN_VALUE, "second".getBytes());
+            attachmentService.addAttachment(document, List.of(first, second));
+            assertThrows(
+                    IllegalArgumentException.class,
+                    () -> attachmentService.renameAttachment(document, "a.txt", "b.txt"));
+            var attachments = attachmentService.listAttachments(document);
+            assertEquals(2, attachments.size());
+            assertTrue(attachments.stream().anyMatch(a -> "a.txt".equals(a.getFilename())));
+            assertTrue(attachments.stream().anyMatch(a -> "b.txt".equals(a.getFilename())));
+        }
+    }
+
+    @Test
     void renameAttachment_NotFoundThrowsException() throws IOException {
         try (var document = new PDDocument()) {
             var file =

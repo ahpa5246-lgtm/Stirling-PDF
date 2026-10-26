@@ -88,7 +88,9 @@ const ConvertContent = ({
     // User manually selected different files
     if (selectedFiles.length > 0) {
       previousSelectionRef.current = currentSelection;
-      convertParams.analyzeFileTypes(selectedFiles);
+      if (!getConversionPreset(pathname)) {
+        convertParams.analyzeFileTypes(selectedFiles);
+      }
       if (hasResults) {
         convertOperation.resetResults();
         onPreviewFile?.(null);

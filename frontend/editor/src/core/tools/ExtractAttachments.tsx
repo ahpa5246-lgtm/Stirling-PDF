@@ -26,7 +26,7 @@ export default function ExtractAttachments(props: BaseToolProps) {
       paramsValid: base.params.validateParameters(),
     },
     review: {
-      isVisible: base.hasResults,
+      isVisible: base.hasResults || !!base.operation.errorMessage,
       operation: base.operation,
       title: t("extractAttachments.results", "Results"),
       onFileClick: base.handleThumbnailClick,
