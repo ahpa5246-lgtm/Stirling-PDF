@@ -79,3 +79,7 @@ The conversion tool supports shortcuts for Word, Excel, PowerPoint, images, HTML
 - Live behavior depends on the deployed backend and optional tools such as OCR and office conversion engines.
 - Some directories in this repository have separate restricted licenses. Review the deployed composition and third-party licenses before commercial use.
 - Frontend unit tests do not substitute for browser tests and real PDF round trips.
+
+## Live PDF round-trip smoke test
+
+With the backend running and `pypdf` installed, run `STIRLING_BASE_URL=http://127.0.0.1:8080 python testing/live_tool_roundtrip.py`. The script creates a synthetic five-page PDF with two text attachments, exercises split, extract, rename, delete and scanner-effect endpoints, and checks page counts and attachment bytes. It sends the synthetic document to the specified server.
