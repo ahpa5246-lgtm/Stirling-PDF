@@ -13318,3 +13318,15 @@ results = "Results"
 [localPdf]
 noticeTitle = "Before processing"
 notice = "Processed in this browser. Save a copy of your original. Rewriting a PDF invalidates digital signatures; page extraction and reordering may discard forms, bookmarks and document metadata."
+
+[home.removeLinks]
+title = "Remove Clickable Links"
+desc = "Remove link annotations while keeping text, comments and form fields."
+
+[home.clearDocumentMetadata]
+title = "Clear Document Metadata"
+desc = "Remove document Info and XMP metadata. Hidden content and metadata inside embedded objects are not scrubbed."
+
+[home.clearPageLabels]
+title = "Reset Page Labels"
+desc = "Remove custom page labels, such as roman numerals, while retaining the document outline."
