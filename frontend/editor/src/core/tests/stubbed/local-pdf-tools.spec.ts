@@ -23,13 +23,11 @@ for (const [route, id] of tools) {
     const run = page.locator('[data-tour="run-button"]');
     await expect(run).toBeDisabled();
     await page.getByTestId("files-button").click();
-    await page
-      .getByTestId("file-input")
-      .setInputFiles({
-        name: "sample.pdf",
-        mimeType: "application/pdf",
-        buffer: Buffer.from(await pdf.save()),
-      });
+    await page.getByTestId("file-input").setInputFiles({
+      name: "sample.pdf",
+      mimeType: "application/pdf",
+      buffer: Buffer.from(await pdf.save()),
+    });
     await expect(run).toBeEnabled({ timeout: 30000 });
     await run.click();
     await expect(page.getByTestId("review-panel-container")).toBeVisible({
