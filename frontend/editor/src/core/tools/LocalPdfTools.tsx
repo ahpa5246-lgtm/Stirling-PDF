@@ -78,7 +78,7 @@ export function createLocalPdfTool(id: LocalPdfToolId) {
       review: {
         isVisible: base.hasResults || !!base.operation.errorMessage,
         operation: base.operation,
-        title: t("results", "Results"),
+        title: t("flattenPortfolio.results", "Results"),
         onFileClick: base.handleThumbnailClick,
         onUndo: base.handleUndo,
       },
