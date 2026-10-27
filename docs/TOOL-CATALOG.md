@@ -1,6 +1,6 @@
 # Core PDF tools
 
-The core registry contains 68 regular tool IDs, in addition to Read, Multi-Tool and Automate. The classification step is pipeline-only. The listing describes code registration, not proof of a working deployment.
+The core registry contains 71 regular tool IDs, in addition to Read, Multi-Tool and Automate. The classification step is pipeline-only. The listing describes code registration, not proof of a working deployment.
 
 ## Registered regular tools
 
@@ -100,3 +100,11 @@ Eight tools use the existing `@cantoo/pdf-lib` dependency (MIT; see the installe
 - `removeBookmarks`: `/remove-bookmarks`
 
 These operations rewrite the document and invalidate digital signatures. Page-copy operations may discard document-level forms, bookmarks and metadata. Encrypted inputs are rejected. A document without even pages produces an explicit error for even-page extraction. Input originals should be retained. Browser memory limits still apply; large-file and browser end-to-end coverage remains outstanding.
+
+## Additional document cleanup tools
+
+- `removeLinks` (`/remove-links`) removes link annotations while retaining text, non-link annotations and form widgets. It does not scrub URL text or links embedded inside other content.
+- `clearDocumentMetadata` (`/clear-document-metadata`) removes the document Info dictionary and catalog XMP stream. It does not sanitize hidden content, attachments or metadata inside embedded objects.
+- `clearPageLabels` (`/reset-page-labels`) removes the catalog PageLabels entry, retaining the outline and page content.
+
+These use the existing MIT-licensed pdf-lib dependency and the same browser processing flow. As with the other PDF rewriting operations, digital signatures are invalidated.
