@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { useBaseParameters } from "@app/hooks/tools/shared/useBaseParameters";
-import { useToolOperation, defineSingleFileTool } from "@app/hooks/tools/shared/useToolOperation";
+import {
+  useToolOperation,
+  defineSingleFileTool,
+} from "@app/hooks/tools/shared/useToolOperation";
 import { objectToFormData } from "@app/hooks/tools/shared/toolApiMapping";
 import { createStandardErrorHandler } from "@app/utils/toolErrorHandler";
 export type FlattenPortfolioParameters = Record<string, never>;
@@ -19,12 +22,15 @@ export const flattenPortfolioOperationConfig = defineSingleFileTool({
   validateParams: validate,
   toApiParams: (_params: FlattenPortfolioParameters) => ({}),
   fromApiParams: (params) => ({ ...params }),
-  buildFormData: (_params: FlattenPortfolioParameters, file: File) => objectToFormData({}, { fileInput: file }),
+  buildFormData: (_params: FlattenPortfolioParameters, file: File) =>
+    objectToFormData({}, { fileInput: file }),
 });
 export const useFlattenPortfolioOperation = () => {
   const { t } = useTranslation();
   return useToolOperation<FlattenPortfolioParameters>({
     ...flattenPortfolioOperationConfig,
-    getErrorMessage: createStandardErrorHandler(t("flattenPortfolio.error", "Unable to flatten the PDF portfolio.")),
+    getErrorMessage: createStandardErrorHandler(
+      t("flattenPortfolio.error", "Unable to flatten the PDF portfolio."),
+    ),
   });
 };
