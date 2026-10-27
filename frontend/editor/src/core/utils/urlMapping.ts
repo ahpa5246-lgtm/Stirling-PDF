@@ -98,6 +98,14 @@ export const URL_TO_TOOL_MAP: Record<string, ToolId> = {
   "/scanner-effect": "scannerEffect",
   "/create-portfolio": "createPortfolio",
   "/flatten-portfolio": "flattenPortfolio",
+  "/reverse-pages": "reversePages",
+  "/duplicate-pages": "duplicatePages",
+  "/odd-pages": "oddPages",
+  "/even-pages": "evenPages",
+  "/interleave-blank-pages": "interleaveBlanks",
+  "/prepend-blank-page": "prependBlank",
+  "/append-blank-page": "appendBlank",
+  "/remove-bookmarks": "removeBookmarks",
 
   // Advanced tools
   "/overlay-pdfs": "overlayPdfs",
