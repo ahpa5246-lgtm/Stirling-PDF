@@ -1032,6 +1032,75 @@ export function useTranslatedToolCatalog(): TranslatedToolCatalog {
         synonyms: getSynonyms(t, "replaceColor"),
       },
 
+      removeLinks: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t("home.removeLinks.title", LOCAL_PDF_TOOLS.removeLinks.title),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("removeLinks"),
+          })),
+        ),
+        description: t(
+          "home.removeLinks.desc",
+          LOCAL_PDF_TOOLS.removeLinks.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      clearDocumentMetadata: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t(
+          "home.clearDocumentMetadata.title",
+          LOCAL_PDF_TOOLS.clearDocumentMetadata.title,
+        ),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("clearDocumentMetadata"),
+          })),
+        ),
+        description: t(
+          "home.clearDocumentMetadata.desc",
+          LOCAL_PDF_TOOLS.clearDocumentMetadata.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      clearPageLabels: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t(
+          "home.clearPageLabels.title",
+          LOCAL_PDF_TOOLS.clearPageLabels.title,
+        ),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("clearPageLabels"),
+          })),
+        ),
+        description: t(
+          "home.clearPageLabels.desc",
+          LOCAL_PDF_TOOLS.clearPageLabels.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
       reversePages: {
         icon: <Icon name="file" size="1.5rem" />,
         name: t("home.reversePages.title", LOCAL_PDF_TOOLS.reversePages.title),
