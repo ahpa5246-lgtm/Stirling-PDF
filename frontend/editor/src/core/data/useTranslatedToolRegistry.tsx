@@ -1,3 +1,9 @@
+import { LOCAL_PDF_TOOLS } from "@app/hooks/tools/localPdf/localPdf";
+import { flattenPortfolioOperationConfig } from "@app/hooks/tools/attachments/useFlattenPortfolio";
+import { extractAttachmentsOperationConfig } from "@app/hooks/tools/attachments/useExtractAttachments";
+import { renameAttachmentOperationConfig } from "@app/hooks/tools/attachments/useRenameAttachment";
+import { deleteAttachmentOperationConfig } from "@app/hooks/tools/attachments/useDeleteAttachment";
+import { scannerEffectOperationConfig } from "@app/hooks/tools/scannerEffect/useScannerEffect";
 import { lazy, useMemo } from "react";
 import { Icon } from "@app/ui/Icon";
 import { useTranslation } from "react-i18next";
@@ -1024,6 +1030,343 @@ export function useTranslatedToolCatalog(): TranslatedToolCatalog {
             import("@app/components/tools/replaceColor/ReplaceColorSettings"),
         ),
         synonyms: getSynonyms(t, "replaceColor"),
+      },
+
+      removeLinks: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t("home.removeLinks.title", LOCAL_PDF_TOOLS.removeLinks.title),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("removeLinks"),
+          })),
+        ),
+        description: t(
+          "home.removeLinks.desc",
+          LOCAL_PDF_TOOLS.removeLinks.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      clearDocumentMetadata: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t(
+          "home.clearDocumentMetadata.title",
+          LOCAL_PDF_TOOLS.clearDocumentMetadata.title,
+        ),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("clearDocumentMetadata"),
+          })),
+        ),
+        description: t(
+          "home.clearDocumentMetadata.desc",
+          LOCAL_PDF_TOOLS.clearDocumentMetadata.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      clearPageLabels: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t(
+          "home.clearPageLabels.title",
+          LOCAL_PDF_TOOLS.clearPageLabels.title,
+        ),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("clearPageLabels"),
+          })),
+        ),
+        description: t(
+          "home.clearPageLabels.desc",
+          LOCAL_PDF_TOOLS.clearPageLabels.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      reversePages: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t("home.reversePages.title", LOCAL_PDF_TOOLS.reversePages.title),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("reversePages"),
+          })),
+        ),
+        description: t(
+          "home.reversePages.desc",
+          LOCAL_PDF_TOOLS.reversePages.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      duplicatePages: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t(
+          "home.duplicatePages.title",
+          LOCAL_PDF_TOOLS.duplicatePages.title,
+        ),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("duplicatePages"),
+          })),
+        ),
+        description: t(
+          "home.duplicatePages.desc",
+          LOCAL_PDF_TOOLS.duplicatePages.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      oddPages: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t("home.oddPages.title", LOCAL_PDF_TOOLS.oddPages.title),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("oddPages"),
+          })),
+        ),
+        description: t(
+          "home.oddPages.desc",
+          LOCAL_PDF_TOOLS.oddPages.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      evenPages: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t("home.evenPages.title", LOCAL_PDF_TOOLS.evenPages.title),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("evenPages"),
+          })),
+        ),
+        description: t(
+          "home.evenPages.desc",
+          LOCAL_PDF_TOOLS.evenPages.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      interleaveBlanks: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t(
+          "home.interleaveBlanks.title",
+          LOCAL_PDF_TOOLS.interleaveBlanks.title,
+        ),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("interleaveBlanks"),
+          })),
+        ),
+        description: t(
+          "home.interleaveBlanks.desc",
+          LOCAL_PDF_TOOLS.interleaveBlanks.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      prependBlank: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t("home.prependBlank.title", LOCAL_PDF_TOOLS.prependBlank.title),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("prependBlank"),
+          })),
+        ),
+        description: t(
+          "home.prependBlank.desc",
+          LOCAL_PDF_TOOLS.prependBlank.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      appendBlank: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t("home.appendBlank.title", LOCAL_PDF_TOOLS.appendBlank.title),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("appendBlank"),
+          })),
+        ),
+        description: t(
+          "home.appendBlank.desc",
+          LOCAL_PDF_TOOLS.appendBlank.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      removeBookmarks: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t(
+          "home.removeBookmarks.title",
+          LOCAL_PDF_TOOLS.removeBookmarks.title,
+        ),
+        component: lazy(() =>
+          import("@app/tools/LocalPdfTools").then((m) => ({
+            default: m.createLocalPdfTool("removeBookmarks"),
+          })),
+        ),
+        description: t(
+          "home.removeBookmarks.desc",
+          LOCAL_PDF_TOOLS.removeBookmarks.description,
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: [],
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: [],
+      },
+      flattenPortfolio: {
+        icon: <Icon name="file" size="1.5rem" />,
+        name: t("home.flattenPortfolio.title", "Flatten PDF Portfolio"),
+        component: lazy(() => import("@app/tools/FlattenPortfolio")),
+        description: t(
+          "home.flattenPortfolio.desc",
+          "Convert a PDF portfolio into a standard PDF while retaining its attachments.",
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: ["flatten-portfolio"],
+        operationConfig: asRegistryConfig(flattenPortfolioOperationConfig),
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: getSynonyms(t, "flattenPortfolio"),
+      },
+      extractAttachments: {
+        icon: <Icon name="download" size="1.5rem" />,
+        name: t("home.extractAttachments.title", "Extract Attachments"),
+        component: lazy(() => import("@app/tools/ExtractAttachments")),
+        description: t(
+          "home.extractAttachments.desc",
+          "Download embedded files from a PDF.",
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.EXTRACTION,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: ["extract-attachments"],
+        operationConfig: asRegistryConfig(extractAttachmentsOperationConfig),
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: getSynonyms(t, "extractAttachments"),
+      },
+      renameAttachment: {
+        icon: <Icon name="square-pen" size="1.5rem" />,
+        name: t("home.renameAttachment.title", "Rename Attachment"),
+        component: lazy(() => import("@app/tools/RenameAttachment")),
+        description: t(
+          "home.renameAttachment.desc",
+          "Change the name of a file embedded in a PDF.",
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.GENERAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: ["rename-attachment"],
+        operationConfig: asRegistryConfig(renameAttachmentOperationConfig),
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: getSynonyms(t, "renameAttachment"),
+      },
+      deleteAttachment: {
+        icon: <Icon name="trash" size="1.5rem" />,
+        name: t("home.deleteAttachment.title", "Delete Attachment"),
+        component: lazy(() => import("@app/tools/DeleteAttachment")),
+        description: t(
+          "home.deleteAttachment.desc",
+          "Remove an embedded file from a PDF by its exact name.",
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.REMOVAL,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: ["delete-attachment"],
+        operationConfig: asRegistryConfig(deleteAttachmentOperationConfig),
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: getSynonyms(t, "deleteAttachment"),
+      },
+      scannerEffect: {
+        icon: <Icon name="sliders-horizontal" size="1.5rem" />,
+        name: t("home.scannerEffect.title", "Scanner Effect"),
+        component: lazy(() => import("@app/tools/ScannerEffect")),
+        description: t(
+          "home.scannerEffect.desc",
+          "Give an existing PDF the appearance of a scanned document.",
+        ),
+        categoryId: ToolCategoryId.STANDARD_TOOLS,
+        subcategoryId: SubcategoryId.PAGE_FORMATTING,
+        maxFiles: -1,
+        supportedFormats: ["pdf"],
+        endpoints: ["scanner-effect"],
+        operationConfig: asRegistryConfig(scannerEffectOperationConfig),
+        supportsAutomate: false,
+        automationSettings: null,
+        synonyms: getSynonyms(t, "scannerEffect"),
       },
 
       // Developer Tools

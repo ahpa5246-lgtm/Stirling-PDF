@@ -2019,6 +2019,9 @@ description = "A free, private PDF editor you can run on any infrastructure."
 dismiss = "Dismiss"
 
 [attachments]
+newName = "New attachment name"
+name = "Exact attachment name"
+settings = "Settings"
 convertToPdfA3b = "Convert to PDF/A-3b"
 convertToPdfA3bDescription = "Creates an archival PDF with embedded attachments"
 convertToPdfA3bTooltip = "PDF/A-3b is an archival format ensuring long-term preservation. It allows embedding arbitrary file formats as attachments. Conversion requires Ghostscript and may take longer for large files."
@@ -11185,6 +11188,14 @@ unit = "Unit"
 unitInvalid = "Invalid unit: {{scaleUnit}}"
 
 [scannerEffect]
+results = "Results"
+submit = "Apply Scanner Effect"
+help = "Create a scanned appearance from an existing PDF. Pages are rasterized; searchable text and interactive content may be lost."
+settings = "Settings"
+colorspace = "Color mode"
+rotation = "Rotation"
+quality = "Scan quality"
+error = "Unable to apply the scanner effect."
 tags = "scan,simulate,create,fake scan,look scanned,scanner effect,make look scanned,photocopy effect,simulate scanner,realistic scan"
 
 [scannerImageSplit]
@@ -13231,3 +13242,91 @@ confirm = "Extract"
 message_one = "This ZIP contains {{count}} file. Extract anyway?"
 message_other = "This ZIP contains {{count}} files. Extract anyway?"
 title = "Large ZIP File"
+
+[extractAttachments]
+results = "Results"
+submit = "Extract Attachments"
+error = "Unable to process PDF attachments."
+
+[deleteAttachment]
+results = "Results"
+submit = "Delete Attachment"
+error = "Unable to process PDF attachments."
+
+[renameAttachment]
+results = "Results"
+submit = "Rename Attachment"
+error = "Unable to process PDF attachments."
+
+[home.extractAttachments]
+desc = "Download embedded files from a PDF."
+title = "Extract Attachments"
+
+[home.renameAttachment]
+desc = "Change the name of a file embedded in a PDF."
+title = "Rename Attachment"
+
+[home.deleteAttachment]
+desc = "Remove an embedded file from a PDF by its exact name."
+title = "Delete Attachment"
+
+[home.scannerEffect]
+desc = "Give an existing PDF the appearance of a scanned document."
+title = "Scanner Effect"
+
+[home.reversePages]
+title = "Reverse Pages"
+desc = "Reverse the order of every page."
+
+[home.duplicatePages]
+title = "Duplicate Every Page"
+desc = "Place a copy immediately after each page."
+
+[home.oddPages]
+title = "Extract Odd Pages"
+desc = "Keep pages 1, 3, 5 and so on."
+
+[home.evenPages]
+title = "Extract Even Pages"
+desc = "Keep pages 2, 4, 6 and so on."
+
+[home.interleaveBlanks]
+title = "Insert Blank Pages"
+desc = "Insert a matching blank page after every page."
+
+[home.prependBlank]
+title = "Add Blank First Page"
+desc = "Insert a blank page matching the first page size."
+
+[home.appendBlank]
+title = "Add Blank Last Page"
+desc = "Append a blank page matching the last page size."
+
+[home.removeBookmarks]
+title = "Remove Bookmarks"
+desc = "Remove the document outline while keeping its pages."
+
+[home.flattenPortfolio]
+title = "Flatten PDF Portfolio"
+desc = "Convert a PDF portfolio into a standard PDF while retaining its attachments."
+
+[flattenPortfolio]
+error = "Unable to flatten the PDF portfolio."
+submit = "Flatten Portfolio"
+results = "Results"
+
+[localPdf]
+noticeTitle = "Before processing"
+notice = "Processed in this browser. Save a copy of your original. Rewriting a PDF invalidates digital signatures; page extraction and reordering may discard forms, bookmarks and document metadata."
+
+[home.removeLinks]
+title = "Remove Clickable Links"
+desc = "Remove link annotations while keeping text, comments and form fields."
+
+[home.clearDocumentMetadata]
+title = "Clear Document Metadata"
+desc = "Remove document Info and XMP metadata. Hidden content and metadata inside embedded objects are not scrubbed."
+
+[home.clearPageLabels]
+title = "Reset Page Labels"
+desc = "Remove custom page labels, such as roman numerals, while retaining the document outline."

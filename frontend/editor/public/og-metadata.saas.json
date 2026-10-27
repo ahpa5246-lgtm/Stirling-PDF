@@ -221,6 +221,26 @@
       "title": "Add Attachments to PDF - Stirling PDF",
       "description": "Add or remove embedded files (attachments) to/from a PDF"
     },
+    "extractAttachments": {
+      "image": "/og_images/home.png",
+      "title": "Extract Attachments - Stirling PDF",
+      "description": "Download embedded files from a PDF."
+    },
+    "renameAttachment": {
+      "image": "/og_images/home.png",
+      "title": "Rename Attachment - Stirling PDF",
+      "description": "Change the name of a file embedded in a PDF."
+    },
+    "deleteAttachment": {
+      "image": "/og_images/home.png",
+      "title": "Delete Attachment - Stirling PDF",
+      "description": "Remove an embedded file from a PDF by its exact name."
+    },
+    "scannerEffect": {
+      "image": "/og_images/home.png",
+      "title": "Scanner Effect - Stirling PDF",
+      "description": "Give an existing PDF the appearance of a scanned document."
+    },
     "createPortfolio": {
       "image": "/og_images/home.png",
       "title": "Create Portfolio - Stirling PDF",
@@ -821,6 +841,10 @@
     "/extract-images": "extractImages",
     "/add-stamp": "addStamp",
     "/add-attachments": "addAttachments",
+    "/extract-attachments": "extractAttachments",
+    "/rename-attachment": "renameAttachment",
+    "/delete-attachment": "deleteAttachment",
+    "/scanner-effect": "scannerEffect",
     "/create-portfolio": "createPortfolio",
     "/change-metadata": "changeMetadata",
     "/overlay-pdfs": "overlayPdfs",
@@ -1074,6 +1098,10 @@
       "label": "Crop PDF"
     },
     {
+      "path": "/delete-attachment",
+      "label": "Delete Attachment"
+    },
+    {
       "path": "/remove-pages",
       "label": "Delete Pages from PDF"
     },
@@ -1092,6 +1120,10 @@
     {
       "path": "/eml-to-pdf",
       "label": "Email (EML) to PDF Converter"
+    },
+    {
+      "path": "/extract-attachments",
+      "label": "Extract Attachments"
     },
     {
       "path": "/extract-images",
@@ -1242,6 +1274,10 @@
       "label": "Remove PDF Password"
     },
     {
+      "path": "/rename-attachment",
+      "label": "Rename Attachment"
+    },
+    {
       "path": "/repair",
       "label": "Repair PDF"
     },
@@ -1260,6 +1296,10 @@
     {
       "path": "/sanitize",
       "label": "Sanitize PDF"
+    },
+    {
+      "path": "/scanner-effect",
+      "label": "Scanner Effect"
     },
     {
       "path": "/shared-sign",

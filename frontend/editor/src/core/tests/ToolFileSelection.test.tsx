@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, test, vi } from "vitest";
 import { render, renderHook, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MantineProvider } from "@mantine/core";
+import { MemoryRouter } from "react-router-dom";
 import Compress from "@app/tools/Compress";
 import Convert from "@app/tools/Convert";
 import Merge from "@app/tools/Merge";
@@ -143,6 +144,10 @@ vi.mock("@app/components/tools/convert/ConvertSettings", () => ({
   }) => (
     <>
       <span data-testid="settings-file-count">{selectedFiles.length}</span>
+      <span data-testid="active-conversion">
+        {parameters.fromExtension}:{parameters.toExtension}:
+        {String(parameters.isSmartDetection)}
+      </span>
       {[
         ["pdf", "png"],
         ["pdf", "pdfua"],
@@ -186,6 +191,37 @@ beforeEach(() => {
 });
 
 describe("tool file selection", () => {
+  test("a conversion shortcut keeps its formats after a mixed file selection changes", async () => {
+    const view = render(
+      <MemoryRouter initialEntries={["/pdf-to-word"]}>
+        <MantineProvider>
+          <Convert />
+        </MantineProvider>
+      </MemoryRouter>,
+    );
+    await waitFor(() =>
+      expect(screen.getByTestId("active-conversion")).toHaveTextContent(
+        "pdf:docx:false",
+      ),
+    );
+    const extra = createTestStirlingFile("notes.txt", "txt", "text/plain");
+    workspace.files = [...workspace.files, extra];
+    workspace.fileStubs.push(createNewStirlingFileStub(extra, extra.fileId));
+    view.rerender(
+      <MemoryRouter initialEntries={["/pdf-to-word"]}>
+        <MantineProvider>
+          <Convert />
+        </MantineProvider>
+      </MemoryRouter>,
+    );
+    await waitFor(() =>
+      expect(screen.getByTestId("active-conversion")).toHaveTextContent(
+        "pdf:docx:false",
+      ),
+    );
+    expect(screen.getByTestId("settings-file-count")).toHaveTextContent("1");
+  });
+
   test("eligible selections keep their identity until file objects or order change", () => {
     const secondPdf = createTestStirlingFile(
       "second.pdf",

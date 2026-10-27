@@ -36,7 +36,7 @@ tasks:
     vars:
       MODE: '{{.MODE | default ""}}'
     cmds:
-      - npx tsx editor/scripts/setup-env.mts{{if .MODE}} --{{.MODE}}{{end}}
+      - node --import tsx editor/scripts/setup-env.mts{{if .MODE}} --{{.MODE}}{{end}}
     sources:
       - editor/scripts/setup-env.mts
     generates:
@@ -360,13 +360,13 @@ tasks:
     desc: "Enforce one icon system - no inline svg, no retired icon libraries"
     deps: [install]
     cmds:
-      - npx tsx editor/scripts/lint/icon-lint.mts
+      - node --import tsx editor/scripts/lint/icon-lint.mts
 
   lint:unused-icons:
     desc: "Report icons we draw ourselves that nothing renders"
     deps: [install]
     cmds:
-      - npx tsx editor/scripts/lint/icon-lint.mts unused
+      - node --import tsx editor/scripts/lint/icon-lint.mts unused
 
   lint:css:
     desc: "Lint stylesheets for duplicate selectors"

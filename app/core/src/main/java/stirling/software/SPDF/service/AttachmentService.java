@@ -306,6 +306,18 @@ public class AttachmentService implements AttachmentServiceInterface {
                     attachmentName);
         }
 
+        for (Map.Entry<String, PDComplexFileSpecification> entry : allEmbeddedFiles.entrySet()) {
+            if (!entry.getKey().equals(keyToRename)
+                    && (entry.getKey().equals(newName)
+                            || determineFilename(entry.getKey(), entry.getValue())
+                                    .equals(newName))) {
+                throw ExceptionUtils.createIllegalArgumentException(
+                        "error.attachmentAlreadyExists",
+                        "An attachment named ''{0}'' already exists",
+                        newName);
+            }
+        }
+
         fileToRename.setFile(newName);
         fileToRename.setFileUnicode(newName);
 
