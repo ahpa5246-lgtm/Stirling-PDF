@@ -61,3 +61,14 @@ describe("PDF content preservation", () => {
     ).rejects.toThrow();
   });
 });
+
+it("duplicates pages as independent page objects", async () => {
+  const pdf = await PDFDocument.create();
+  pdf.addPage();
+  const output = await PDFDocument.load(
+    await transformPdf("duplicatePages", await pdf.save()),
+  );
+  expect(output.getPage(0).ref.toString()).not.toBe(
+    output.getPage(1).ref.toString(),
+  );
+});
