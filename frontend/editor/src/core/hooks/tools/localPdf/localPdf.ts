@@ -1,5 +1,3 @@
-import { PDFDocument, PDFName } from "@cantoo/pdf-lib";
-
 export const LOCAL_PDF_TOOLS = {
   reversePages: {
     title: "Reverse Pages",
@@ -42,6 +40,7 @@ export async function transformPdf(
   id: LocalPdfToolId,
   bytes: Uint8Array,
 ): Promise<Uint8Array> {
+  const { PDFDocument, PDFName } = await import("@cantoo/pdf-lib");
   const source = await PDFDocument.load(bytes, { updateMetadata: false });
   const count = source.getPageCount();
   if (!count) throw new Error("No matching pages in this PDF.");
