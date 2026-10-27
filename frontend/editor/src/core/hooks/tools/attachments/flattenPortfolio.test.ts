@@ -8,7 +8,9 @@ describe("flatten portfolio tool", () => {
   });
   it("sends the selected PDF to the portfolio flattening endpoint", () => {
     const file = new File(["pdf"], "portfolio.pdf");
-    expect(flattenPortfolioOperationConfig.endpoint).toBe("/api/v1/misc/flatten-portfolio");
+    expect(flattenPortfolioOperationConfig.endpoint).toBe(
+      "/api/v1/misc/flatten-portfolio",
+    );
     const form = flattenPortfolioOperationConfig.buildFormData({}, file);
     expect([...form.keys()]).toEqual(["fileInput"]);
     expect(form.get("fileInput")).toBe(file);
